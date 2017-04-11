@@ -1,5 +1,5 @@
 {
-  "name": "confetti",
+  "name": "dom-confetti",
   "version": "1.0.0",
   "description": "confetti",
   "main": "lib/main.js",
