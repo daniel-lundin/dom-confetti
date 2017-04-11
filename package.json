@@ -16,5 +16,11 @@
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-es2015": "^6.24.1"
-  }
+  },
+  "files": [
+    "src",
+    "lib",
+    "README.md",
+    "package.json"
+  ]
 }
