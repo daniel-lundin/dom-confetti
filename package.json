@@ -1,6 +1,6 @@
 {
   "name": "dom-confetti",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "confetti",
   "main": "lib/index.js",
   "scripts": {
@@ -18,8 +18,8 @@
     "babel-preset-es2015": "^6.24.1"
   },
   "files": [
-    "src/",
-    "lib/",
+    "src/index.js",
+    "lib/index.js",
     "package.json"
   ]
 }
