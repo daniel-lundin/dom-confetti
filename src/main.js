@@ -11,7 +11,7 @@ function createElements(root, elementCount) {
     .from({ length: elementCount })
     .map((_, index) => {
       const element = document.createElement('div');
-      element.classList = ['fetti'];
+      element.classList.add('fetti');
       const color = colors[index % colors.length];
       element.style['background-color']= color; // eslint-disable-line space-infix-ops
       element.style.width = '10px';
