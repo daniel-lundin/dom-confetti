@@ -1,12 +1,4 @@
-const colors = [
-  '#a864fd',
-  '#29cdff',
-  '#78ff44',
-  '#ff718d',
-  '#fdff6a'
-];
-
-function createElements(root, elementCount) {
+function createElements(root, elementCount, colors) {
   return Array
     .from({ length: elementCount })
     .map((_, index) => {
@@ -80,9 +72,16 @@ export function confetti(root, {
     decay = 0.9,
     spread = 45,
     startVelocity = 45,
-    elementCount = 50
+    elementCount = 50,
+    colors = [
+      '#a864fd',
+      '#29cdff',
+      '#78ff44',
+      '#ff718d',
+      '#fdff6a'
+    ]
   } = {}) {
-  const elements = createElements(root, elementCount);
+  const elements = createElements(root, elementCount, colors);
   const fettis = elements.map((element) => ({
     element,
     physics: randomPhysics(angle, spread, startVelocity)
