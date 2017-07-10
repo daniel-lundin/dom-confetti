@@ -12,13 +12,6 @@
   perspective: 1000px;
 }
 
-.fetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: orange;
-}
-
 form > * {
   display: block;
 }
