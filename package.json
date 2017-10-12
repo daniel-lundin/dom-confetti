@@ -11,6 +11,10 @@
   },
   "author": "d-dog@d-dog.se",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daniel-lundin/dom-confetti.git"
+  },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
