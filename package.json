@@ -1,13 +1,13 @@
 {
   "name": "dom-confetti",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "confetti with dom elements",
   "main": "lib/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && md2ghp",
     "build": "babel src --out-dir lib",
-    "dev":"babel src --out-dir test --plugins transform-es2015-modules-umd"
+    "dev": "babel src --out-dir test --plugins transform-es2015-modules-umd"
   },
   "author": "d-dog@d-dog.se",
   "license": "MIT",
@@ -19,6 +19,7 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-preset-es2015": "^6.24.1",
+    "md2ghp": "0.0.1"
   }
 }
