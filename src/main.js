@@ -21,17 +21,17 @@ function createElements(root, elementCount, colors) {
     });
 }
 
-function randomPhysics(angle, spread, startVelocity) {
+function randomPhysics(angle, spread, startVelocity, random) {
   const radAngle = angle * (Math.PI / 180);
   const radSpread = spread * (Math.PI / 180);
   return {
     x: 0,
     y: 0,
-    wobble: Math.random() * 10,
-    velocity: (startVelocity * 0.5) + (Math.random() * startVelocity),
-    angle2D: -radAngle + ((0.5 * radSpread) - (Math.random() * radSpread)),
-    angle3D: -(Math.PI / 4) + (Math.random() * (Math.PI / 2)),
-    tiltAngle: Math.random() * Math.PI
+    wobble: random() * 10,
+    velocity: (startVelocity * 0.5) + (random() * startVelocity),
+    angle2D: -radAngle + ((0.5 * radSpread) - (random() * radSpread)),
+    angle3D: -(Math.PI / 4) + (random() * (Math.PI / 2)),
+    tiltAngle: random() * Math.PI
   };
 }
 
@@ -80,12 +80,13 @@ export function confetti(root, {
     spread = 45,
     startVelocity = 45,
     elementCount = 50,
-    colors = defaultColors
+    colors = defaultColors,
+    random = Math.random,
   } = {}) {
   const elements = createElements(root, elementCount, colors);
   const fettis = elements.map((element) => ({
     element,
-    physics: randomPhysics(angle, spread, startVelocity)
+    physics: randomPhysics(angle, spread, startVelocity, random)
   }));
 
   animate(root, fettis, decay);
