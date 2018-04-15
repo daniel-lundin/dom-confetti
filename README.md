@@ -29,5 +29,6 @@ This will trigger a confetti explosion every time a button is clicked.
 - `startVelocity` - Initial velocity of the particles, defaults to 45.
 - `elementCount` - Number of particle elements, default to 50.
 - `decay` - Decrease in velocity per frame, defaults to 0.9
+- `random` - Randomization function, defaults to Math.random
 
 License MIT, copyright [Daniel Lundin](https://www.twitter.com/daniel-lundin) 2017
