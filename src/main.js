@@ -67,7 +67,11 @@ function animate(root, fettis, decay) {
     if (tick < totalTicks) {
       requestAnimationFrame(update);
     } else {
-      fettis.forEach((fetti) => root.removeChild(fetti.element));
+      fettis.forEach((fetti) => {
+        if (fetti.element.parentNode === root) {
+          return root.removeChild(fetti.element);
+        }
+      });
     }
   }
 
