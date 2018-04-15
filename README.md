@@ -19,7 +19,7 @@ This will trigger a confetti explosion every time a button is clicked.
 
 ## Interface
 
-**`confetti`**`(root, config = {})
+**`confetti`**`(root, config = {})`
 
 `root` should be the DOM element to start the explosion at, and
 `config`, if given, may be an object specifying the following options:
