@@ -1,6 +1,6 @@
 {
   "name": "dom-confetti",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "confetti with dom elements",
   "main": "lib/main.js",
   "scripts": {
