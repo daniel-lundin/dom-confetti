@@ -21,7 +21,7 @@ button.addEventListener(&quot;click&quot;, () =&gt; confetti(button))
 </code></pre>
 <p>This will trigger a confetti explosion every time a button is clicked.</p>
 <ul><li><a href=#demo>Demo</a></li><li><a href=#interface>Interface</a></li></ul><h2 id="demo">Demo</h2><p><a href="https://daniel-lundin.github.io/react-dom-confetti/">https://daniel-lundin.github.io/react-dom-confetti/</a></p>
-<h2 id="interface">Interface</h2><p><strong><code>confetti</code></strong>`(root, config = {})</p>
+<h2 id="interface">Interface</h2><p><strong><code>confetti</code></strong><code>(root, config = {})</code></p>
 <p><code>root</code> should be the DOM element to start the explosion at, and
 <code>config</code>, if given, may be an object specifying the following options:</p>
 <ul>
@@ -30,6 +30,7 @@ button.addEventListener(&quot;click&quot;, () =&gt; confetti(button))
 <li><code>startVelocity</code> - Initial velocity of the particles, defaults to 45.</li>
 <li><code>elementCount</code> - Number of particle elements, default to 50.</li>
 <li><code>decay</code> - Decrease in velocity per frame, defaults to 0.9</li>
+<li><code>random</code> - Randomization function, defaults to Math.random</li>
 </ul>
 <p>License MIT, copyright <a href="https://www.twitter.com/daniel-lundin">Daniel Lundin</a> 2017</p>
 
