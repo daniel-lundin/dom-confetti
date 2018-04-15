@@ -5,7 +5,7 @@
   "main": "lib/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build && md2ghp",
+    "prepublishOnly": "npm run build && md2ghp",
     "build": "babel src --out-dir lib",
     "dev": "babel src --out-dir test --plugins transform-es2015-modules-umd"
   },
