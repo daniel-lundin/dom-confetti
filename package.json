@@ -3,6 +3,7 @@
   "version": "0.0.11",
   "description": "confetti with dom elements",
   "main": "lib/main.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build && md2ghp",
