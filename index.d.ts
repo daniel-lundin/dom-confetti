@@ -8,4 +8,4 @@ interface ConfettiConfig {
     random?: () => number;
 }
 
-export function confetti(root: Element, config?: ConfettiConfig): void;
+export function confetti(root: HTMLElement, config?: ConfettiConfig): void;
