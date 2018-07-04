@@ -1,4 +1,4 @@
 lib/
 node_modules/
-test/main.js
+test/domConfetti.js
 .DS_Store

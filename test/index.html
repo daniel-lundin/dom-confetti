@@ -24,7 +24,7 @@
       <div id="container">
       </div>
     </div>
-    <script src="main.js"></script>
+    <script src="domConfetti.js"></script>
     <script>
 
       function readFormValues() {
@@ -43,10 +43,10 @@
         const root = document.getElementById('container');
         knapp.addEventListener('click', (e) => {
           const values = readFormValues();
-          confet(root, values);
+          window.domConfetti.confetti(root, values);
           e.preventDefault();
         });
-        window.main.confetti(root, initialValues);
+        window.domConfetti.confetti(root, initialValues);
       }
 
       init();

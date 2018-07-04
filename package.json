@@ -2,12 +2,12 @@
   "name": "dom-confetti",
   "version": "0.0.11",
   "description": "confetti with dom elements",
-  "main": "lib/main.js",
+  "main": "lib/dom-confetti.js",
   "types": "./index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build && md2ghp",
-    "build": "babel src --out-dir lib",
+    "build": "babel src --out-dir lib --plugins transform-es2015-modules-umd",
     "dev": "babel src --out-dir test --plugins transform-es2015-modules-umd"
   },
   "author": "d-dog@d-dog.se",
