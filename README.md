@@ -5,7 +5,7 @@
 Trigger confetti explosions in the DOM.
 
 ```js
-import confetti from 'dom-confetti';
+import { confetti } from 'dom-confetti';
 
 const button = document.querySelector(".my-button")
 button.addEventListener("click", () => confetti(button))
