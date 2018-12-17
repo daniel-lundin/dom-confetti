@@ -28,6 +28,9 @@ This will trigger a confetti explosion every time a button is clicked.
 - `spread` - spread of the explosion in degrees,  deafults to 45.
 - `startVelocity` - Initial velocity of the particles, defaults to 45.
 - `elementCount` - Number of particle elements, default to 50.
+- `width`: - width of the confetti elements
+- `height`: - height of the confetti elements
+- `colors`: - array of possible colors of the elements
 - `decay` - Decrease in velocity per frame, defaults to 0.9
 - `random` - Randomization function, defaults to Math.random
 
