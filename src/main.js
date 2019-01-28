@@ -1,24 +1,16 @@
-const defaultColors = [
-  '#a864fd',
-  '#29cdff',
-  '#78ff44',
-  '#ff718d',
-  '#fdff6a'
-];
+const defaultColors = ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"];
 
 function createElements(root, elementCount, colors, width, height) {
-  return Array
-    .from({ length: elementCount })
-    .map((_, index) => {
-      const element = document.createElement('div');
-      const color = colors[index % colors.length];
-      element.style['background-color']= color; // eslint-disable-line space-infix-ops
-      element.style.width = width;
-      element.style.height = height;
-      element.style.position = 'absolute';
-      root.appendChild(element);
-      return element;
-    });
+  return Array.from({ length: elementCount }).map((_, index) => {
+    const element = document.createElement("div");
+    const color = colors[index % colors.length];
+    element.style["background-color"] = color; // eslint-disable-line space-infix-ops
+    element.style.width = width;
+    element.style.height = height;
+    element.style.position = "absolute";
+    root.appendChild(element);
+    return element;
+  });
 }
 
 function randomPhysics(angle, spread, startVelocity, random) {
@@ -28,9 +20,9 @@ function randomPhysics(angle, spread, startVelocity, random) {
     x: 0,
     y: 0,
     wobble: random() * 10,
-    velocity: (startVelocity * 0.5) + (random() * startVelocity),
-    angle2D: -radAngle + ((0.5 * radSpread) - (random() * radSpread)),
-    angle3D: -(Math.PI / 4) + (random() * (Math.PI / 2)),
+    velocity: startVelocity * 0.5 + random() * startVelocity,
+    angle2D: -radAngle + (0.5 * radSpread - random() * radSpread),
+    angle3D: -(Math.PI / 4) + random() * (Math.PI / 2),
     tiltAngle: random() * Math.PI
   };
 }
@@ -46,8 +38,8 @@ function updateFetti(fetti, progress, decay) {
   fetti.physics.tiltAngle += 0.1;
 
   const { x, y, tiltAngle, wobble } = fetti.physics;
-  const wobbleX = x + (10 * Math.cos(wobble));
-  const wobbleY = y + (10 * Math.sin(wobble));
+  const wobbleX = x + 10 * Math.cos(wobble);
+  const wobbleY = y + 10 * Math.sin(wobble);
   const transform = `translate3d(${wobbleX}px, ${wobbleY}px, 0) rotate3d(1, 1, 1, ${tiltAngle}rad)`;
 
   fetti.element.style.transform = transform;
@@ -61,13 +53,13 @@ function animate(root, fettis, decay) {
   let tick = 0;
 
   function update() {
-    fettis.forEach((fetti) => updateFetti(fetti, tick / totalTicks, decay));
+    fettis.forEach(fetti => updateFetti(fetti, tick / totalTicks, decay));
 
     tick += 1;
     if (tick < totalTicks) {
       requestAnimationFrame(update);
     } else {
-      fettis.forEach((fetti) => {
+      fettis.forEach(fetti => {
         if (fetti.element.parentNode === root) {
           return root.removeChild(fetti.element);
         }
@@ -78,19 +70,32 @@ function animate(root, fettis, decay) {
   requestAnimationFrame(update);
 }
 
-export function confetti(root, {
-    angle = 90,
-    decay = 0.9,
-    spread = 45,
-    startVelocity = 45,
-    elementCount = 50,
-    width = '10px',
-    height = '10px',
-    colors = defaultColors,
-    random = Math.random,
-  } = {}) {
+const defaults = {
+  angle: 90,
+  decay: 0.9,
+  spread: 45,
+  startVelocity: 45,
+  elementCount: 50,
+  width: "10px",
+  height: "10px",
+  colors: defaultColors,
+  random: Math.random
+};
+
+export function confetti(root, config = {}) {
+  const {
+    elementCount,
+    colors,
+    width,
+    height,
+    angle,
+    spread,
+    startVelocity,
+    decay,
+    random
+  } = Object.assign({}, defaults, config);
   const elements = createElements(root, elementCount, colors, width, height);
-  const fettis = elements.map((element) => ({
+  const fettis = elements.map(element => ({
     element,
     physics: randomPhysics(angle, spread, startVelocity, random)
   }));
