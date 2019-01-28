@@ -19,7 +19,7 @@
     <main>
     <h1 id="dom-confetti">dom-confetti</h1><p><a href="https://www.npmjs.com/package/dom-confetti"><img src="https://badge.fury.io/js/dom-confetti.svg" alt=npm version" title="null" style="max-width: 100%;"></a></p>
 <p>Trigger confetti explosions in the DOM.</p>
-<pre><code class="lang-js">import confetti from &#39;dom-confetti&#39;;
+<pre><code class="lang-js">import { confetti } from &#39;dom-confetti&#39;;
 
 const button = document.querySelector(&quot;.my-button&quot;)
 button.addEventListener(&quot;click&quot;, () =&gt; confetti(button))
@@ -31,11 +31,15 @@ button.addEventListener(&quot;click&quot;, () =&gt; confetti(button))
 <code>config</code>, if given, may be an object specifying the following options:</p>
 <ul>
 <li><code>angle</code> - direction of the explosion in degrees, defaults to 90.</li>
-<li><code>spread</code> - spread of the explosion in degrees,  deafults to 45.</li>
+<li><code>spread</code> - spread of the explosion in degrees, defaults to 45.</li>
 <li><code>startVelocity</code> - Initial velocity of the particles, defaults to 45.</li>
-<li><code>elementCount</code> - Number of particle elements, default to 50.</li>
+<li><code>width</code>: - width of the confetti elements</li>
+<li><code>height</code>: - height of the confetti elements</li>
+<li><code>colors</code>: - array of possible colors of the elements</li>
+<li><code>elementCount</code> - Number of particle elements, defaults to 50.</li>
 <li><code>decay</code> - Decrease in velocity per frame, defaults to 0.9</li>
 <li><code>random</code> - Randomization function, defaults to Math.random</li>
+<li><code>colors</code> - An array of color codes, defaults to <code>[&#39;#a864fd&#39;, &#39;#29cdff&#39;, &#39;#78ff44&#39;, &#39;#ff718d&#39; &#39;#fdff6a&#39;]</code></li>
 </ul>
 <p>License MIT, copyright <a href="https://www.twitter.com/daniel-lundin">Daniel Lundin</a> 2017</p>
 
