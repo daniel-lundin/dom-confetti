@@ -1,6 +1,8 @@
 interface ConfettiConfig {
     angle?: number;
     spread?: number;
+    width?: number;
+    height?: number;
     startVelocity?: number;
     elementCount?: number;
     decay?: number;
