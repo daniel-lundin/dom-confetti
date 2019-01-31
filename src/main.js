@@ -9,6 +9,7 @@ function createElements(root, elementCount, colors, width, height) {
     element.style.height = height;
     element.style.position = "absolute";
     element.style.willChange = "transform, opacity";
+    element.style.visibility = "hidden";
     root.appendChild(element);
     return element;
   });
@@ -50,22 +51,24 @@ function updateFetti(fetti, progress, dragFriction, decay) {
   const wobbleY = y + 10 * Math.sin(wobble);
   const transform = `translate3d(${wobbleX}px, ${wobbleY}px, 0) rotate3d(1, 1, 1, ${tiltAngle}rad)`;
 
+  fetti.element.style.visibility = "visible";
   fetti.element.style.transform = transform;
   fetti.element.style.opacity = 1 - progress;
 
   /* eslint-enable */
 }
 
-function animate(root, fettis, dragFriction, decay, duration) {
+function animate(root, fettis, dragFriction, decay, duration, delay) {
   let startTime;
 
   return new Promise(resolve => {
     function update(time) {
       if (!startTime) startTime = time;
+      const elapsed = time - startTime;
       const progress = startTime === time ? 0 : (time - startTime) / duration;
-      fettis.forEach(fetti =>
-        updateFetti(fetti, progress, dragFriction, decay)
-      );
+      fettis.slice(0, Math.ceil(elapsed / delay)).forEach(fetti => {
+        updateFetti(fetti, progress, dragFriction, decay);
+      });
 
       if (time - startTime < duration) {
         requestAnimationFrame(update);
@@ -92,6 +95,7 @@ const defaults = {
   height: "10px",
   colors: defaultColors,
   duration: 3000,
+  delay: 0,
   dragFriction: 0.1,
   random: Math.random
 };
@@ -108,6 +112,7 @@ export function confetti(root, config = {}) {
     decay,
     dragFriction,
     duration,
+    delay,
     random
   } = Object.assign({}, defaults, config);
   const elements = createElements(root, elementCount, colors, width, height);
@@ -116,5 +121,5 @@ export function confetti(root, config = {}) {
     physics: randomPhysics(angle, spread, startVelocity, random)
   }));
 
-  return animate(root, fettis, dragFriction, decay, duration);
+  return animate(root, fettis, dragFriction, decay, duration, delay);
 }

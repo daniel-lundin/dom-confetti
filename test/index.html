@@ -13,8 +13,12 @@
       <input id="spread" type="number" value="45">
       <label for="velocity">Start velocity</label>
       <input id="velocity" type="number" value="50">
-      <label for="decay">Decay</label>
-      <input id="decay" type="number" value="0.9">
+      <label for="duration">Duration</label>
+      <input id="duration" type="number" value="3000">
+      <label for="dragFriction">dragFriction</label>
+      <input id="dragFriction" type="number" value="0.1">
+      <label for="delay">delay</label>
+      <input id="delay" type="number" value="1">
       <label for="elements">Elements</label>
       <input id="elements" type="number" value="50">
       <button id="knapp">Knapp</button>
@@ -31,10 +35,12 @@
         const angle = document.getElementById('angle').value;
         const spread = document.getElementById('spread').value;
         const startVelocity = document.getElementById('velocity').value;
-        const decay = parseFloat(document.getElementById('decay').value);
+        const duration = parseFloat(document.getElementById('duration').value);
+        const dragFriction = parseFloat(document.getElementById('dragFriction').value);
+        const delay = parseFloat(document.getElementById('delay').value);
         const elementCount = parseFloat(document.getElementById('elements').value);
 
-        return { angle, spread, startVelocity, decay, elementCount };
+        return { angle, spread, startVelocity, duration, dragFriction,delay, elementCount };
       }
 
       function init() {
