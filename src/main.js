@@ -30,13 +30,18 @@ function randomPhysics(angle, spread, startVelocity, random) {
   };
 }
 
-function updateFetti(fetti, progress, decay) {
+function updateFetti(fetti, progress, dragFriction, decay) {
   /* eslint-disable no-param-reassign */
   fetti.physics.x += Math.cos(fetti.physics.angle2D) * fetti.physics.velocity;
   fetti.physics.y += Math.sin(fetti.physics.angle2D) * fetti.physics.velocity;
   fetti.physics.z += Math.sin(fetti.physics.angle3D) * fetti.physics.velocity;
   fetti.physics.wobble += fetti.physics.wobbleSpeed;
-  fetti.physics.velocity *= decay;
+  // Backward compatibility
+  if (decay) {
+    fetti.physics.velocity *= decay;
+  } else {
+    fetti.physics.velocity -= fetti.physics.velocity * dragFriction;
+  }
   fetti.physics.y += 3;
   fetti.physics.tiltAngle += fetti.physics.tiltAngleSpeed;
 
@@ -51,14 +56,16 @@ function updateFetti(fetti, progress, decay) {
   /* eslint-enable */
 }
 
-function animate(root, fettis, decay, duration) {
+function animate(root, fettis, dragFriction, decay, duration) {
   let startTime;
 
   return new Promise(resolve => {
     function update(time) {
       if (!startTime) startTime = time;
       const progress = startTime === time ? 0 : (time - startTime) / duration;
-      fettis.forEach(fetti => updateFetti(fetti, progress, decay));
+      fettis.forEach(fetti =>
+        updateFetti(fetti, progress, dragFriction, decay)
+      );
 
       if (time - startTime < duration) {
         requestAnimationFrame(update);
@@ -78,7 +85,6 @@ function animate(root, fettis, decay, duration) {
 
 const defaults = {
   angle: 90,
-  decay: 0.9,
   spread: 45,
   startVelocity: 45,
   elementCount: 50,
@@ -86,6 +92,7 @@ const defaults = {
   height: "10px",
   colors: defaultColors,
   duration: 3000,
+  dragFriction: 0.1,
   random: Math.random
 };
 
@@ -99,6 +106,7 @@ export function confetti(root, config = {}) {
     spread,
     startVelocity,
     decay,
+    dragFriction,
     duration,
     random
   } = Object.assign({}, defaults, config);
@@ -108,5 +116,5 @@ export function confetti(root, config = {}) {
     physics: randomPhysics(angle, spread, startVelocity, random)
   }));
 
-  return animate(root, fettis, decay, duration);
+  return animate(root, fettis, dragFriction, decay, duration);
 }

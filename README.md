@@ -30,11 +30,12 @@ This will trigger a confetti explosion every time a button is clicked.
 - `width`: - width of the confetti elements
 - `height`: - height of the confetti elements
 - `elementCount` - Number of particle elements, defaults to 50.
-- `decay` - Decrease in velocity per frame, defaults to 0.9
+- `decay` - *deprecated* - Decrease in velocity per frame, defaults to 0.9 (Use of this will disable dragFriction)
+- `dragFriction` - Decrease in velocity proportional to current velocity, default to 0.1
 - `duration` - Duration in milliseconds, defaults to 3000
 - `random` - Randomization function, defaults to Math.random
 - `colors` - An array of color codes, defaults to `['#a864fd', '#29cdff', '#78ff44', '#ff718d' '#fdff6a']`
 
-Returns a promise that resolves once the confetti is completely faded.
+Returns a promise that resolves once the confetti has completed its fade out.
 
 License MIT, copyright [Daniel Lundin](https://www.twitter.com/daniel-lundin) 2019

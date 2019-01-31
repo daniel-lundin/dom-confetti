@@ -43,6 +43,7 @@
         const root = document.getElementById('container');
         knapp.addEventListener('click', (e) => {
           const values = readFormValues();
+          values.colors = ['#000','#333', '#666'];
           window.main.confetti(root, values);
           e.preventDefault();
         });
