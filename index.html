@@ -36,12 +36,13 @@ button.addEventListener(&quot;click&quot;, () =&gt; confetti(button))
 <li><code>width</code>: - width of the confetti elements</li>
 <li><code>height</code>: - height of the confetti elements</li>
 <li><code>elementCount</code> - Number of particle elements, defaults to 50.</li>
-<li><code>decay</code> - Decrease in velocity per frame, defaults to 0.9</li>
+<li><code>decay</code> - <em>deprecated</em> - Decrease in velocity per frame, defaults to 0.9 (Use of this will disable dragFriction)</li>
+<li><code>dragFriction</code> - Decrease in velocity proportional to current velocity, default to 0.1</li>
 <li><code>duration</code> - Duration in milliseconds, defaults to 3000</li>
 <li><code>random</code> - Randomization function, defaults to Math.random</li>
 <li><code>colors</code> - An array of color codes, defaults to <code>[&#39;#a864fd&#39;, &#39;#29cdff&#39;, &#39;#78ff44&#39;, &#39;#ff718d&#39; &#39;#fdff6a&#39;]</code></li>
 </ul>
-<p>Returns a promise that resolves once the confetti is completely faded.</p>
+<p>Returns a promise that resolves once the confetti has completed its fade out.</p>
 <p>License MIT, copyright <a href="https://www.twitter.com/daniel-lundin">Daniel Lundin</a> 2019</p>
 
     </main>
