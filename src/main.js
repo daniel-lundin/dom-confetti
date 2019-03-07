@@ -1,18 +1,38 @@
+const emoji = require("node-emoji");
 const defaultColors = ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"];
-
-function createElements(root, elementCount, colors, width, height) {
-  return Array.from({ length: elementCount }).map((_, index) => {
-    const element = document.createElement("div");
-    const color = colors[index % colors.length];
-    element.style["background-color"] = color; // eslint-disable-line space-infix-ops
-    element.style.width = width;
-    element.style.height = height;
-    element.style.position = "absolute";
-    element.style.willChange = "transform, opacity";
-    element.style.visibility = "hidden";
-    root.appendChild(element);
-    return element;
-  });
+const defaultEmojiStrings = ["100", "heavy_exclamation_mark", "sparkles", "trophy", "balloon", "tada", "rocket", "clap", "thumbsup", "ok_hand", "crown", "heart"];
+const defaultEmojis = defaultEmojiStrings.map((str) => {
+  return emoji.get(str);
+});
+const EMOJI = "emoji";
+function createElements(root, elementCount, colors, width, height, type) {
+  if (type === EMOJI) {
+    return Array.from({ length: elementCount }).map((_, index) => {
+      const element = document.createElement("div");
+      const emojiChar = colors[index % colors.length];
+      element.appendChild(emojiChar);
+      element.style.width = width;
+      element.style.height = height;
+      element.style.position = "absolute";
+      element.style.willChange = "transform, opacity";
+      element.style.visibility = "hidden";
+      root.appendChild(element);
+      return element;
+    })
+  } else {
+    return Array.from({ length: elementCount }).map((_, index) => {
+      const element = document.createElement("div");
+      const color = colors[index % colors.length];
+      element.style["background-color"] = color; // eslint-disable-line space-infix-ops
+      element.style.width = width;
+      element.style.height = height;
+      element.style.position = "absolute";
+      element.style.willChange = "transform, opacity";
+      element.style.visibility = "hidden";
+      root.appendChild(element);
+      return element;
+    });
+  }
 }
 
 function randomPhysics(angle, spread, startVelocity, random) {
@@ -86,24 +106,29 @@ function animate(root, fettis, dragFriction, decay, duration, delay) {
   });
 }
 
-const defaults = {
-  angle: 90,
-  spread: 45,
-  startVelocity: 45,
-  elementCount: 50,
-  width: "10px",
-  height: "10px",
-  colors: defaultColors,
-  duration: 3000,
-  delay: 0,
-  dragFriction: 0.1,
-  random: Math.random
-};
-
 export function confetti(root, config = {}) {
+  const defaults = {
+    angle: 90,
+    spread: 45,
+    startVelocity: 45,
+    elementCount: 50,
+    width: "10px",
+    height: "10px",
+    duration: 3000,
+    delay: 0,
+    colorsOrEmoji: defaultColors,
+    dragFriction: 0.1,
+    random: Math.random,
+    type: "colors"
+  };
+
+  if (config.type === EMOJI) {
+    defaults.colorsOrEmoji = defaultEmojis;
+  }
+
   const {
     elementCount,
-    colors,
+    colorsOrEmoji,
     width,
     height,
     angle,
@@ -113,9 +138,11 @@ export function confetti(root, config = {}) {
     dragFriction,
     duration,
     delay,
-    random
+    random,
+    type,
   } = Object.assign({}, defaults, config);
-  const elements = createElements(root, elementCount, colors, width, height);
+
+  const elements = createElements(root, elementCount, colorsOrEmoji, width, height, type);
   const fettis = elements.map(element => ({
     element,
     physics: randomPhysics(angle, spread, startVelocity, random)

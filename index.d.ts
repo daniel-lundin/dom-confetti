@@ -6,7 +6,8 @@ interface ConfettiConfig {
     startVelocity?: number;
     elementCount?: number;
     decay?: number;
-    colors?: string[];
+    colorsOrEmoji?: string[];
+    type?: string[];
     random?: () => number;
 }
 

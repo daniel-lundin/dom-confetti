@@ -23,5 +23,8 @@
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^5.12.1",
     "md2ghp": "0.0.6"
+  },
+  "dependencies": {
+    "node-emoji": "^1.10.0"
   }
 }
