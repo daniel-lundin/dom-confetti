@@ -1,13 +1,15 @@
 interface ConfettiConfig {
-    angle?: number;
-    spread?: number;
-    width?: number;
-    height?: number;
-    startVelocity?: number;
-    elementCount?: number;
-    decay?: number;
-    colors?: string[];
-    random?: () => number;
+  angle?: number;
+  colors?: string[];
+  delay?: number;
+  dragFriction?: number;
+  duration?: number;
+  elementCount?: number;
+  height?: string;
+  random?: () => number;
+  spread?: number;
+  startVelocity?: number;
+  width?: string;
 }
 
 export function confetti(root: HTMLElement, config?: ConfettiConfig): void;
