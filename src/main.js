@@ -104,6 +104,7 @@ function backwardPatch(config) {
   if (!config.stagger && config.delay) {
     config.stagger = config.delay;
   }
+  return config;
 }
 
 export function confetti(root, config = {}) {
