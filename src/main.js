@@ -95,7 +95,7 @@ const defaults = {
   height: "10px",
   colors: defaultColors,
   duration: 3000,
-  delay: 0,
+  stagger: 0,
   dragFriction: 0.1,
   random: Math.random
 };
@@ -112,7 +112,7 @@ export function confetti(root, config = {}) {
     decay,
     dragFriction,
     duration,
-    delay,
+    stagger,
     random
   } = Object.assign({}, defaults, config);
   const elements = createElements(root, elementCount, colors, width, height);
@@ -121,5 +121,5 @@ export function confetti(root, config = {}) {
     physics: randomPhysics(angle, spread, startVelocity, random)
   }));
 
-  return animate(root, fettis, dragFriction, decay, duration, delay);
+  return animate(root, fettis, dragFriction, decay, duration, stagger);
 }

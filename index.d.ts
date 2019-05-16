@@ -3,6 +3,9 @@ interface ConfettiConfig {
     spread?: number;
     width?: number;
     height?: number;
+    duration?: number;
+    dragFriction?: number;
+    stagger?: number;
     startVelocity?: number;
     elementCount?: number;
     decay?: number;
