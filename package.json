@@ -1,6 +1,6 @@
 {
   "name": "dom-confetti",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.3",
   "description": "confetti with dom elements",
   "main": "lib/main.js",
   "types": "./index.d.ts",

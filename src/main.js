@@ -58,7 +58,7 @@ function updateFetti(fetti, progress, dragFriction, decay) {
   /* eslint-enable */
 }
 
-function animate(root, fettis, dragFriction, decay, duration, delay) {
+function animate(root, fettis, dragFriction, decay, duration, stagger) {
   let startTime;
 
   return new Promise(resolve => {
@@ -66,7 +66,7 @@ function animate(root, fettis, dragFriction, decay, duration, delay) {
       if (!startTime) startTime = time;
       const elapsed = time - startTime;
       const progress = startTime === time ? 0 : (time - startTime) / duration;
-      fettis.slice(0, Math.ceil(elapsed / delay)).forEach(fetti => {
+      fettis.slice(0, Math.ceil(elapsed / stagger)).forEach(fetti => {
         updateFetti(fetti, progress, dragFriction, decay);
       });
 
@@ -100,6 +100,12 @@ const defaults = {
   random: Math.random
 };
 
+function backwardPatch(config) {
+  if (!config.stagger && config.delay) {
+    config.stagger = config.delay;
+  }
+}
+
 export function confetti(root, config = {}) {
   const {
     elementCount,
@@ -114,7 +120,7 @@ export function confetti(root, config = {}) {
     duration,
     stagger,
     random
-  } = Object.assign({}, defaults, config);
+  } = Object.assign({}, defaults, backwardPatch(config));
   const elements = createElements(root, elementCount, colors, width, height);
   const fettis = elements.map(element => ({
     element,
