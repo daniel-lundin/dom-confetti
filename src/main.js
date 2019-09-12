@@ -49,7 +49,7 @@ function updateFetti(fetti, progress, dragFriction, decay) {
   const { x, y, tiltAngle, wobble } = fetti.physics;
   const wobbleX = x + 10 * Math.cos(wobble);
   const wobbleY = y + 10 * Math.sin(wobble);
-  const transform = `translate3d(${wobbleX}px, ${wobbleY}px, 0) rotate3d(1, 1, 1, ${tiltAngle}rad)`;
+  const transform = `translate3d(${wobbleX}px, ${wobbleY}px, 10px) rotate3d(1, 1, 1, ${tiltAngle}rad)`;
 
   fetti.element.style.visibility = "visible";
   fetti.element.style.transform = transform;
