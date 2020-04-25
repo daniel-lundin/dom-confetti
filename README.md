@@ -39,4 +39,4 @@ This will trigger a confetti explosion every time a button is clicked.
 
 Returns a promise that resolves once the confetti has completed its fade out.
 
-License MIT, copyright [Daniel Lundin](https://www.twitter.com/daniel-lundin) 2019
+License MIT, copyright [Daniel Lundin](https://twitter.com/danielundin) 2019
