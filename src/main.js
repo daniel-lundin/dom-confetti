@@ -21,6 +21,7 @@ function randomPhysics(angle, spread, startVelocity, random) {
   return {
     x: 0,
     y: 0,
+    z: 0,
     wobble: random() * 10,
     wobbleSpeed: 0.1 + random() * 0.1,
     velocity: startVelocity * 0.5 + random() * startVelocity,
@@ -46,10 +47,10 @@ function updateFetti(fetti, progress, dragFriction, decay) {
   fetti.physics.y += 3;
   fetti.physics.tiltAngle += fetti.physics.tiltAngleSpeed;
 
-  const { x, y, tiltAngle, wobble } = fetti.physics;
+  const { x, y, z, tiltAngle, wobble } = fetti.physics;
   const wobbleX = x + 10 * Math.cos(wobble);
   const wobbleY = y + 10 * Math.sin(wobble);
-  const transform = `translate3d(${wobbleX}px, ${wobbleY}px, 0) rotate3d(1, 1, 1, ${tiltAngle}rad)`;
+  const transform = `translate3d(${wobbleX}px, ${wobbleY}px, ${z}px) rotate3d(1, 1, 1, ${tiltAngle}rad)`;
 
   fetti.element.style.visibility = "visible";
   fetti.element.style.transform = transform;
@@ -93,6 +94,7 @@ const defaults = {
   elementCount: 50,
   width: "10px",
   height: "10px",
+  perspective: "300px",
   colors: defaultColors,
   duration: 3000,
   stagger: 0,
@@ -113,6 +115,7 @@ export function confetti(root, config = {}) {
     colors,
     width,
     height,
+    perspective,
     angle,
     spread,
     startVelocity,
@@ -122,6 +125,7 @@ export function confetti(root, config = {}) {
     stagger,
     random
   } = Object.assign({}, defaults, backwardPatch(config));
+  root.style.perspective = perspective;
   const elements = createElements(root, elementCount, colors, width, height);
   const fettis = elements.map(element => ({
     element,

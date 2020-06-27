@@ -1,3 +1,6 @@
+html, body {
+  background-color: black;
+}
 #root {
   display: flex;
   justify-content: center;
@@ -9,7 +12,6 @@
   width: 0px;
   height: 0px;
   position: relative;
-  perspective: 1000px;
 }
 
 form > * {

@@ -6,13 +6,13 @@
     </style>
   </head>
   <body>
-    <form>
+    <form novalidate>
       <label for="angle">Angle</label>
       <input id="angle" type="number" value="90">
       <label for="spread">Spread</label>
-      <input id="spread" type="number" value="45">
+      <input id="spread" type="number" value="360">
       <label for="velocity">Start velocity</label>
-      <input id="velocity" type="number" value="50">
+      <input id="velocity" type="number" value="30">
       <label for="duration">Duration</label>
       <input id="duration" type="number" value="3000">
       <label for="dragFriction">dragFriction</label>
@@ -28,8 +28,8 @@
       <div id="container">
       </div>
     </div>
-    <script src="main.js"></script>
-    <script>
+    <script type="module">
+      import { confetti } from '../src/main.js';
 
       function readFormValues() {
         const angle = document.getElementById('angle').value;
@@ -49,11 +49,11 @@
         const root = document.getElementById('container');
         knapp.addEventListener('click', (e) => {
           const values = readFormValues();
-          values.colors = ['#000','#333', '#666'];
-          window.main.confetti(root, values);
+          // values.colors = ['#000','#333', '#666'];
+          confetti(root, values);
           e.preventDefault();
         });
-        window.main.confetti(root, initialValues);
+        confetti(root, initialValues);
       }
 
       init();
