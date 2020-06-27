@@ -29,7 +29,7 @@ This will trigger a confetti explosion every time a button is clicked.
 - `startVelocity` - Initial velocity of the particles, defaults to 45.
 - `width`: - width of the confetti elements as css string, defaults to `10px`.
 - `height`: - height of the confetti elements as css string, defaults to `10px`.
-- `perspective` - perspective of root element, default to `300px`.
+- `perspective` - perspective of root element.
 - `height`: - height of the confetti elements
 - `elementCount` - Number of particle elements, defaults to 50.
 - `decay` - *deprecated* - Decrease in velocity per frame, defaults to 0.9 (Use of this will disable dragFriction)
