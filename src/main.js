@@ -94,7 +94,7 @@ const defaults = {
   elementCount: 50,
   width: "10px",
   height: "10px",
-  perspective: "300px",
+  perspective: "",
   colors: defaultColors,
   duration: 3000,
   stagger: 0,
