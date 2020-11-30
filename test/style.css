@@ -17,3 +17,7 @@ html, body {
 form > * {
   display: block;
 }
+
+form label {
+	color: #fff;
+}

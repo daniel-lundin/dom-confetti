@@ -38,6 +38,7 @@ This will trigger a confetti explosion every time a button is clicked.
 - `stagger` - Delay for each fetti in milliseconds, defaults to 0.
 - `random` - Randomization function, defaults to Math.random
 - `colors` - An array of color codes, defaults to `['#a864fd', '#29cdff', '#78ff44', '#ff718d' '#fdff6a']`
+- `image` - Replace colors with an image instead (absolute or relative url). 
 
 Returns a promise that resolves once the confetti has completed its fade out.
 

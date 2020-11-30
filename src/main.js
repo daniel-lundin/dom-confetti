@@ -1,15 +1,22 @@
 const defaultColors = ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"];
 
-function createElements(root, elementCount, colors, width, height) {
+function createElements(root, elementCount, colors, image, width, height) {
   return Array.from({ length: elementCount }).map((_, index) => {
     const element = document.createElement("div");
-    const color = colors[index % colors.length];
-    element.style["background-color"] = color; // eslint-disable-line space-infix-ops
     element.style.width = width;
     element.style.height = height;
     element.style.position = "absolute";
     element.style.willChange = "transform, opacity";
     element.style.visibility = "hidden";
+    if (image) {
+      element.style["background-image"] = `url("${image}")`;
+      element.style["background-color"] = "transparent"; // eslint-disable-line space-infix-ops
+      element.style["background-repeat"] = "no-repeat";
+      element.style["background-size"] = "contain";
+    } else {
+      const color = colors[index % colors.length];
+      element.style["background-color"] = color; // eslint-disable-line space-infix-ops
+    }
     root.appendChild(element);
     return element;
   });
@@ -96,6 +103,7 @@ const defaults = {
   height: "10px",
   perspective: "",
   colors: defaultColors,
+  image: "",
   duration: 3000,
   stagger: 0,
   dragFriction: 0.1,
@@ -113,6 +121,7 @@ export function confetti(root, config = {}) {
   const {
     elementCount,
     colors,
+    image,
     width,
     height,
     perspective,
@@ -126,7 +135,7 @@ export function confetti(root, config = {}) {
     random
   } = Object.assign({}, defaults, backwardPatch(config));
   root.style.perspective = perspective;
-  const elements = createElements(root, elementCount, colors, width, height);
+  const elements = createElements(root, elementCount, colors, image, width, height);
   const fettis = elements.map(element => ({
     element,
     physics: randomPhysics(angle, spread, startVelocity, random)
