@@ -21,6 +21,12 @@
       <input id="delay" type="number" value="1">
       <label for="elements">Elements</label>
       <input id="elements" type="number" value="50">
+      <label for="image">Image (url)</label>
+      <input id="image" type="text" value="">
+      <label for="width">Width (px)</label>
+      <input id="width" type="number" value="10">
+      <label for="height">Height (px)</label>
+      <input id="height" type="number" value="10">
       <button id="knapp">Knapp</button>
     </form>
 
@@ -39,8 +45,11 @@
         const dragFriction = parseFloat(document.getElementById('dragFriction').value);
         const delay = parseFloat(document.getElementById('delay').value);
         const elementCount = parseFloat(document.getElementById('elements').value);
+        const image = document.getElementById('image').value;
+        const width = parseFloat(document.getElementById('width').value) + 'px';
+        const height = parseFloat(document.getElementById('height').value) + 'px';
 
-        return { angle, spread, startVelocity, duration, dragFriction,delay, elementCount };
+        return { angle, spread, startVelocity, duration, dragFriction,delay, elementCount, image, width, height };
       }
 
       function init() {
