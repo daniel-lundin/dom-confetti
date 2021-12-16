@@ -31,6 +31,20 @@
     <script type="module">
       import { confetti } from '../src/main.js';
 
+      const isElementOnscreen = function(el) {
+        var rect = el.getBoundingClientRect();
+        const windowBufferPercentage = 0.025
+        const heightBuffer = window.innerHeight * windowBufferPercentage;
+        const widthBuffer = window.innerWidth * windowBufferPercentage;
+
+        return !(
+           (rect.x + rect.width) < widthBuffer
+             || (rect.y + rect.height) < heightBuffer
+             || (rect.x > window.innerWidth - widthBuffer
+             || rect.y > window.innerHeight - heightBuffer)
+          );
+      }
+
       function readFormValues() {
         const angle = document.getElementById('angle').value;
         const spread = document.getElementById('spread').value;
@@ -40,7 +54,7 @@
         const delay = parseFloat(document.getElementById('delay').value);
         const elementCount = parseFloat(document.getElementById('elements').value);
 
-        return { angle, spread, startVelocity, duration, dragFriction,delay, elementCount };
+        return { angle, spread, startVelocity, duration, dragFriction,delay, elementCount, shouldRenderElement: isElementOnscreen };
       }
 
       function init() {

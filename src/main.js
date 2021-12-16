@@ -59,7 +59,7 @@ function updateFetti(fetti, progress, dragFriction, decay) {
   /* eslint-enable */
 }
 
-function animate(root, fettis, dragFriction, decay, duration, stagger) {
+function animate(root, fettis, dragFriction, decay, duration, stagger, shouldRenderElement) {
   let startTime;
 
   return new Promise(resolve => {
@@ -72,6 +72,19 @@ function animate(root, fettis, dragFriction, decay, duration, stagger) {
       });
 
       if (time - startTime < duration) {
+        if(shouldRenderElement){
+          // if the user has declared a custom function to state when
+          // a fetti should be rendered, use it
+
+          fettis.forEach(fetti => {
+            if(!shouldRenderElement(fetti.element)){
+              if(fetti.element.parentNode === root) { 
+                root.removeChild(fetti.element);
+              }
+            }
+          });  
+        }
+
         requestAnimationFrame(update);
       } else {
         fettis.forEach(fetti => {
@@ -99,7 +112,8 @@ const defaults = {
   duration: 3000,
   stagger: 0,
   dragFriction: 0.1,
-  random: Math.random
+  random: Math.random,
+  shouldRenderElement: null,
 };
 
 function backwardPatch(config) {
@@ -123,7 +137,8 @@ export function confetti(root, config = {}) {
     dragFriction,
     duration,
     stagger,
-    random
+    random,
+    shouldRenderElement
   } = Object.assign({}, defaults, backwardPatch(config));
   root.style.perspective = perspective;
   const elements = createElements(root, elementCount, colors, width, height);
@@ -132,5 +147,5 @@ export function confetti(root, config = {}) {
     physics: randomPhysics(angle, spread, startVelocity, random)
   }));
 
-  return animate(root, fettis, dragFriction, decay, duration, stagger);
+  return animate(root, fettis, dragFriction, decay, duration, stagger, shouldRenderElement);
 }
